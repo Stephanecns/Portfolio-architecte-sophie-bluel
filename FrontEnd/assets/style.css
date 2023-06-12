@@ -295,3 +295,8 @@ footer nav ul {
 .invisible{
     display: none;
 }
+
+.error{
+	margin-bottom: 5px;
+    color: red;
+}
