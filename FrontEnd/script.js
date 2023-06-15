@@ -1,3 +1,15 @@
+window.addEventListener('DOMContentLoaded', (event) => {
+    // Récupère le token du sessionStorage
+    const token = sessionStorage.getItem('authToken');
+
+    // Si le token existe, supprime la classe 'appear' de tous les éléments qui l'ont
+    if (token) {
+        const elementsWithAppear = document.querySelectorAll('.appear');
+        elementsWithAppear.forEach(element => {
+            element.classList.remove('appear');
+        });
+    }
+});
 console.log('connecté !');
 let arrayGallery = []
 fetch('http://localhost:5678/api/works')

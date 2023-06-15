@@ -4,6 +4,7 @@ const email = document.getElementById('email');
 const password = document.getElementById('password');
 const form = document.getElementById('formulaire');
 
+
 // Ajout d'un écouteur d'événement au formulaire
 form.addEventListener('submit', function(e){
     //empecher le raffraichissement de la page
@@ -28,13 +29,15 @@ fetch('http://localhost:5678/api/users/login', {
       // Stocke le token d'authentification dans le stockage local
       sessionStorage.setItem('authToken', data.token);
 
-      
       // Redirige vers la page d'accueil
       window.location.href = './index.html';
+
+  
     } else {
       // Affiche un message d'erreur
       email.nextElementSibling.classList.remove('invisible');
     }
     console.log(data)
+    
   })
 })//Fermeture addEventListener
