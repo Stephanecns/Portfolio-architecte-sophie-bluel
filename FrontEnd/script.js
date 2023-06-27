@@ -1,3 +1,4 @@
+
 window.addEventListener('DOMContentLoaded', (event) => {
     // Récupère le token du sessionStorage
     const token = sessionStorage.getItem('authToken');
@@ -87,6 +88,11 @@ fetch('http://localhost:5678/api/categories')
                 displayWork(item.id)
             })
 
+            const option = document.createElement('option');
+            option.innerHTML = item.name;
+            option.value = item.id;
+
+            document.getElementById('ctgy').appendChild(option);
             // Ajout de article dans la DIV dédiée 
             categoriesContainer.appendChild(article);
 
@@ -222,7 +228,7 @@ modalImage.addEventListener('click', function (close) {
 
 //Deuxième formulaire 
 // 1 - Je sélectionne et stocke tous les éléments nécessaires
-const form = document.getElementById('formulaire');
+const form = document.getElementById('formulaireAddWork');
 const photoUploadElem = document.getElementById('photoUpload');
 const titleElem = document.getElementById('title');
 const categoryElem = document.getElementById('ctgy');
@@ -302,4 +308,3 @@ photoUp.addEventListener('change', function () {
         rectangleBleu.appendChild(imgElement);
     }
 });
-
