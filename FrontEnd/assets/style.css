@@ -3,19 +3,87 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -23,46 +91,68 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
 	display: block;
 }
+
 body {
 	line-height: 1;
 }
-ol, ul {
+
+ol,
+ul {
 	list-style: none;
 }
-blockquote, q {
+
+blockquote,
+q {
 	quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 /** end reset css**/
 body {
 	max-width: 1140px;
-	margin:auto;
-	font-family: 'Work Sans' ;
+	margin: auto;
+	font-family: 'Work Sans';
 	font-size: 14px;
 }
+
 header {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0
 }
+
 section {
 	margin: 50px 0
 }
 
-h1{
+h1 {
 	display: flex;
 	flex-direction: column;
 	font-family: 'Syne';
@@ -71,25 +161,27 @@ h1{
 	color: #B1663C
 }
 
-h1 > span {
+h1>span {
 	font-family: 'Work Sans';
-	font-size:10px;
+	font-size: 10px;
 	letter-spacing: 0.1em;
-;
+	;
 }
 
-h2{
+h2 {
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
 	color: #1D6154
 }
+
 nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
 
 }
+
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
@@ -98,13 +190,16 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
 #introduction {
 	display: flex;
 	align-items: center;
 }
+
 #introduction figure {
 	flex: 1
 }
+
 #introduction img {
 	display: block;
 	margin: auto;
@@ -114,6 +209,7 @@ li:hover {
 #introduction article {
 	flex: 1
 }
+
 #introduction h2 {
 	margin-bottom: 1em;
 }
@@ -121,6 +217,7 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
@@ -128,13 +225,13 @@ li:hover {
 
 
 /*ADD BTN FILTER CSS*/
-.categories{
+.categories {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 51px;
 }
 
-.btn-all{
+.btn-all {
 	font-family: 'Syne';
 	font-size: 16px;
 	font-weight: 700;
@@ -146,7 +243,7 @@ li:hover {
 	margin-right: 10px;
 }
 
-.btn-all:hover{
+.btn-all:hover {
 	background: #1D6154;
 	color: white;
 }
@@ -166,20 +263,24 @@ li:hover {
 	width: 100%;
 
 }
+
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
-#contact > * {
+
+#contact>* {
 	text-align: center;
 
 }
-#contact h2{
+
+#contact h2 {
 	margin-bottom: 20px;
 }
+
 #contact form {
 	text-align: left;
-	margin-top:30px;
+	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 }
@@ -190,23 +291,25 @@ margin: auto;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #contact label {
 	margin: 2em 0 1em 0;
 }
+
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+input[type="submit"] {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
 	background-color: #1D6154;
-	margin : 2em auto ;
+	margin: 2em auto;
 	width: 180px;
 	text-align: center;
-	border-radius: 60px ;
+	border-radius: 60px;
 }
 
 footer nav ul {
@@ -217,31 +320,31 @@ footer nav ul {
 
 
 /*LOGIN PAGE CSS*/
-.container{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+.container {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 }
 
-.banniere-titre #titre{
+.banniere-titre #titre {
 	color: #1D6154;
 }
 
-#formulaire{
-    width: 50%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    padding: 45px;
+#formulaire {
+	width: 50%;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	border-radius: 5px;
+	padding: 45px;
 }
 
-.form-item label{
-    display: block;
-    margin-bottom: 7px;
-    font-size: 0.8rem;
+.form-item label {
+	display: block;
+	margin-bottom: 7px;
+	font-size: 0.8rem;
 	font-family: 'Work Sans';
 	font-style: normal;
 	font-weight: 500;
@@ -250,20 +353,20 @@ footer nav ul {
 	color: #3D3D3D;
 }
 
-.form-item input{
-    padding: 1rem;
-    width: 77%;
+.form-item input {
+	padding: 1rem;
+	width: 77%;
 	background: #FFFFFF;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 	margin-bottom: 30px;
 	border: none;
 }
 
-#btn{
+#btn {
 	width: 179px;
 	height: 36px;
-    background: #1D6154;
-    border-radius: 60px;
+	background: #1D6154;
+	border-radius: 60px;
 	border: none;
 	font-family: 'Syne';
 	font-style: normal;
@@ -274,15 +377,15 @@ footer nav ul {
 	color: #FFFFFF;
 }
 
-.connect{
+.connect {
 	display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	gap: 28px;
 }
 
-.fgt-password{
+.fgt-password {
 	font-family: 'Work Sans';
 	font-style: normal;
 	font-weight: 500;
@@ -292,28 +395,30 @@ footer nav ul {
 	color: #3D3D3D;
 }
 
-.invisible{
-    display: none;
+.invisible {
+	display: none;
 }
 
-.error{
+.error {
 	margin-bottom: 5px;
-    color: red;
+	color: red;
 }
+
 /*LOGIN PAGE CSS*/
 
 
 /*Edition mode*/
-.edition-mode{
+.edition-mode {
 	position: fixed;
 	top: 0;
 	background-color: black;
 	width: 1140px;
 	height: 59px;
 	margin: 0;
+	z-index: 999;
 }
 
-.navbar-edition{
+.navbar-edition {
 	display: flex;
 	justify-content: center;
 	gap: 21px;
@@ -321,11 +426,11 @@ footer nav ul {
 
 }
 
-.btn-publish{
-    padding: 1rem;
-    background-color: white;
-    border: none;
-    color: black;
+.btn-publish {
+	padding: 1rem;
+	background-color: white;
+	border: none;
+	color: black;
 	border-radius: 60px;
 	margin: 0.3rem;
 	font-family: 'Work Sans';
@@ -337,7 +442,7 @@ footer nav ul {
 	cursor: pointer
 }
 
-.edit{
+.edit {
 	color: white;
 	font-family: 'Work Sans';
 	font-style: normal;
@@ -349,44 +454,345 @@ footer nav ul {
 	cursor: pointer
 }
 
-.edit .space{
+.edit .space {
 	padding-right: 7px;
 }
 
-.edit2{
+.edit2 {
 	font-family: 'Work Sans';
 	font-style: normal;
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 16px;
 	padding-top: 7px;
-	padding-left: 57px;	
+	padding-left: 57px;
 	cursor: pointer
 }
 
-.edit2 .space{
+.edit2 .space {
 	padding-right: 7px;
 }
 
 
 
-.edit3{
+.edit3 {
 	font-family: 'Work Sans';
 	font-style: normal;
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 16px;
 	text-align: center;
-	position: absolute;
-	left: 947px;
-	top: 575px;
-	cursor: pointer
+	position: relative;
+	left: 176px;
+	top: -50px;
+	cursor: pointer;
+
 }
 
-.edit3 .space{
+.edit3 .space {
 	padding-right: 7px;
 }
 
-.appear{
+.appear {
 	display: none;
+}
+
+/*Edition mode*/
+
+
+/*Modal*/
+.modalContainer {
+	background-color: rgba(0, 0, 0, 0.3);
+	height: 100vh;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	z-index: 101;
+}
+
+.modal {
+	width: 630px;
+	height: 731px;
+	background-color: white;
+	border-radius: 10px;
+	padding-left: 100px;
+	padding-right: 100px;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.modal-content {
+	position: relative;
+}
+
+.modal-Title {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 26px;
+	line-height: 30px;
+	text-align: center;
+	color: #000000;
+	padding-top: 60px;
+}
+
+.close-Tab {
+	position: relative;
+	left: 665px;
+	bottom: 63px;
+	font-size: 2rem;
+	color: #000;
+	cursor: pointer;
+}
+
+.modalConnect {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 23px;
+}
+
+.delete-Post {
+	font-family: 'Syne';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 17px;
+	text-align: center;
+	color: #D65353;
+	cursor: pointer;
+}
+
+#btn-Add {
+	width: 237px;
+	height: 36px;
+	background: #1D6154;
+	border-radius: 60px;
+	border: none;
+	font-family: 'Syne';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 17px;
+	text-align: center;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+.line {
+	width: 420px;
+	border: 1px solid #B3B3B3;
+	margin-top: -13px;
+}
+
+.photo-edit img {
+	width: 80px;
+	height: 100px;
+	object-fit: cover;
+}
+
+
+.photo-gallery {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(5, 1fr);
+	height: 463px;
+	width: 463px;
+	padding-left: 98px;
+}
+
+.photo-edit .blackIcon1 {
+	background-color: #000000;
+	padding: 0.4rem;
+	border-radius: 2px;
+	color: #FFFFFF;
+	position: relative;
+	left: 53px;
+	bottom: 111px;
+	font-size: 10px;
+	cursor: pointer;
+}
+
+
+
+/*Modal*/
+
+
+/*Modal2*/
+.photo-section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.photo-upload {
+	width: 420px;
+	height: 169px;
+	background: #E8F1F6;
+	border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	padding: 20px;
+	overflow: hidden;
+	margin-bottom: 56px;
+}
+
+.photo-upload-input {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: relative;
+	z-index: -1;
+}
+
+
+.photo-upload-label {
+	width: 173px;
+	height: 36px;
+	background: #CBD6DC;
+	border-radius: 50px;
+	color: #306685;
+	text-align: center;
+	font-size: 14px;
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 500;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.photo-upload-info {
+	color: #306685;
+	text-align: center;
+	font-size: 12px;
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 500;
+	margin-top: 10px;
+}
+
+.photo-upload-icon {
+	font-size: 58px;
+	color: rgba(185, 197, 204, 1);
+	margin-bottom: 20px;
+
+}
+
+#formulaire {
+	width: 630px;
+	height: 643px;
+	background-color: white;
+	border-radius: 10px;
+	padding-left: 100px;
+	padding-right: 100px;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	z-index: 100;
+	}
+
+select#ctgy {
+	padding: 1rem;
+	width: 83%;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	margin-bottom: 60px;
+	border: none;
+}
+
+.returnTab {
+	position: absolute;
+	top: -10px;
+	left: -71px;
+	width: 21px;
+	height: 21px;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.close-Tab1 {
+	position: absolute;
+	left: 665px;
+	bottom: 611px;
+	font-size: 2rem;
+	color: #000;
+	cursor: pointer;
+}
+
+.modalTitle{
+	margin-bottom: 62px;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 26px;
+	line-height: 30px;
+	text-align: center;
+	color: #000000;
+}
+
+#btnSub{
+	width: 237px;
+	height: 36px;
+	border-radius: 60px;
+	background: #A7A7A7;
+	color: #FFF;
+	text-align: center;
+	font-size: 14px;
+	font-family: Syne;
+	font-weight: 700;
+	border: none;
+	cursor: pointer;
+}
+
+.formItem label {
+	display: block;
+	margin-bottom: 7px;
+	font-size: 0.8rem;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #3D3D3D;
+}
+
+.formItem input {
+	padding: 1rem;
+	width: 77%;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	margin-bottom: 30px;
+	border: none;
+}
+
+.formItem{
+	margin-left: 87px;
+}
+
+.filterModal{
+	background-color: rgba(0, 0, 0, 0.3);
+	height: 100vh;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 600;
+	display: none;
+}
+
+.photo-upload img {
+	height: 209px;
+	object-fit: cover;
 }

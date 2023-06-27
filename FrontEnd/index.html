@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Sophie Bluel - Architecte d'intérieur</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+		rel="stylesheet">
 	<script src="https://kit.fontawesome.com/4bff0d411a.js" crossorigin="anonymous"></script>
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
-<body>
-	<section class="edition-mode appear">
-    <div class="navbar-edition appear" >
-        <p class="edit"><i class="space fa-regular fa-pen-to-square"></i>Mode édition</p>
-        <button class="btn-publish">publier les changements</button>
-    </div>
-	</section>
 
+<body>
 
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -31,7 +27,69 @@
 		</ul>
 	</nav>
 </header>
+
 <main>
+	<section class="edition-mode appear">
+		<div class="navbar-edition appear">
+			<p class="edit"><i class="space fa-regular fa-pen-to-square"></i>Mode édition</p>
+			<button class="btn-publish">publier les changements</button>
+		</div>
+	</section>
+	<div class="modalContainer">
+		<div id="myModal" class="modal">
+			<!-- Contenu de la modale -->
+			<div class="modal-content">
+				<h1 class="modal-Title">Galerie photo</h1>
+				<i class="close-Tab fa-solid fa-xmark"></i>
+				<div class="photo-gallery">
+	
+				</div>
+				<div class="modalConnect">
+					<div class="line"></div>
+					<button id="btn-Add" type="submit">Ajouter une photo</button>
+					<p class="delete-Post">Supprimer la galerie</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section class="modalForm appear">
+		<div class="filterModal">
+		<form method="post" action="#" id="formulaire">
+			<div class="modal-content">
+				<h1 class="modalTitle">Ajout photo</h1>
+				<i class="close-Tab1 fa-solid fa-xmark"></i>
+				<i class="returnTab fa-solid fa-arrow-left"></i>
+				
+				<div class="photo-section">
+					<div class="photo-upload">
+						<i class="fas fa-image photo-upload-icon"></i>
+						<label for="photoUpload" class="photo-upload-label">+ Ajouter photo</label>
+						<input type="file" id="photoUpload" class="photo-upload-input">
+						<div class="photo-upload-info">jpg, png : 4mo max</div>
+					</div>
+				</div>
+				<div class="formItem">
+					<label for="title">Titre</label>
+					<input type="text" id="title">
+					<div class="error invisible">Ce champ doit contenir entre deux et dix caractères</div>
+				</div>
+				<div class="formItem">
+					<label for="category">Catégorie</label>
+					<select id="ctgy">
+						<option value="Objets">Objets</option>
+						<option value="Appartements">Appartements</option>
+						<option value="Hôtels & restaurants">Hôtels & restaurants</option>
+					</select>
+					<div class="error invisible">Ce champ doit contenir entre deux et dix caractères</div>
+				</div>
+				<div class="modalConnect">
+					<div class="line"></div>
+					<button id="btnSub" >Valider</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	</section>
 	<section id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
@@ -39,20 +97,24 @@
 		</figure>
 		<article>
 			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
+			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
+				finale du chantier.</p>
+			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
+				couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier
+				sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)
+			</p>
 		</article>
 	</section>
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
-		 <p class="edit3 appear"><i class="space fa-regular fa-pen-to-square"></i>Mode édition</p>
+		<p class="edit3 appear"><i class="space fa-regular fa-pen-to-square"></i>Mode édition</p>
 		<div class="categories">
 			<button id="filterAll-button" class="btn-all">Tous</button>
 		</div>
 
 
-		<div class="gallery" id ="gallery">
+		<div class="gallery" id="gallery">
 
 		</div>
 	</section>
@@ -78,6 +140,8 @@
 		</ul>
 	</nav>
 </footer>
-<script src="script.js"></script> 
+
+<script src="script.js"></script>
 </body>
+
 </html>
