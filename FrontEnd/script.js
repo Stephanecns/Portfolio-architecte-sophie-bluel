@@ -1,4 +1,3 @@
-
 window.addEventListener('DOMContentLoaded', (event) => {
     // Récupère le token du sessionStorage
     const token = sessionStorage.getItem('authToken');
@@ -18,14 +17,10 @@ let arrayGallery = []
 fetch('http://localhost:5678/api/works')
     .then(response => response.json())
     .then(data => {
-
         // Nommage du tableau
         arrayGallery = data;
-        console.log(arrayGallery)
-
         //Appel de la fonction
         displayWork()
-
     });
 
 
@@ -35,11 +30,9 @@ function displayWork(categoryId) {
 
 
     filterarrayGallery.forEach(item => {
-        console.log(item);
 
         //Je sélectionne et je stocke la DIV gallery
         const galleryContainer = document.querySelector('.gallery');
-        console.log(galleryContainer);
 
         //Création d'une DIV avec Template Strings
         const article = `
@@ -48,7 +41,6 @@ function displayWork(categoryId) {
         <figcaption>${item.title}</figcaption>
         </figure>
         `
-        console.log(article);
 
         // Ajout de article dans la DIV dédiée 
         galleryContainer.innerHTML += article;
@@ -63,20 +55,20 @@ fetch('http://localhost:5678/api/categories')
     //lorsque la requête HTTP est terminée), la réponse doit être convertie en JSON.
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+
 
         // Nommage du tableau
         const arrayCategories = data;
-        console.log(arrayCategories)
+
 
         //Parcours ton tableau de catégories en utilisant une boucle forEach pour itérer sur chaque objet de ton tableau 
         // L'élément actuel est accessible via le paramètre item.
         arrayCategories.forEach(item => {
-            console.log(item);
+
 
             //Je sélectionne et je stocke la DIV gallery
             const categoriesContainer = document.querySelector('.categories');
-            console.log(categoriesContainer);
+
 
             const article = document.createElement('article');
             article.className = "btn-all"
@@ -143,12 +135,7 @@ project.addEventListener('click', function () {
 
     //Je génère le nouveau contenu de la galerie
     arrayGallery.forEach(item => {
-        /*const modalHtml = `
-            <div class="photo-edit">
-                <img src="${item.imageUrl}">
-                <p class="">éditer</p>
-            </div>
-        `;*/
+
         const modalHtml = document.createElement('div');
         modalHtml.classList.add('photo-edit');
         modalHtml.innerHTML = '<img src="' + item.imageUrl + '"> <p>éditer</p>'
@@ -159,52 +146,39 @@ project.addEventListener('click', function () {
 
         galleryContainer.appendChild(modalHtml);
         trashI.addEventListener('click', function (event) {
-            console.log(event)
             const workId = item.id;
-            console.log(workId)
-           
+            const deletedElement = event.target.parentNode;
             fetch(`http://localhost:5678/api/works/${workId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem('authToken')}`
                 }
             })
-                .then(response => {
-                    if (response.ok) {
-                        console.log('Suppression réussie');
-                        // Gérer la réponse de suppression réussie ici
-                        // Suppression réussie, retirer les éléments du DOM
-                        const deletedElement = event.target.parentNode; // Obtenir le parent de l'icône de suppression (la div "photo-edit")
-                        deletedElement.remove(); // Supprimer l'élément du DOM
-                    } else {
-                        console.log('Erreur lors de la suppression');
-                        // Gérer les erreurs de suppression ici
-                    }
+                .then(response => response.json())
+                .then(data => {
+                    deletedElement.remove();
                 })
-
-        });
+                .catch(error => console.error('Error:', error));
+        });//Femerture listener
     });
 })
 
-
-
 // Je sélectionne et je stocke la DIV modal-container
 const modal = document.querySelector('.modalContainer');
-console.log(modal);
 
 // Je sélectionne l'icone
 const icone = document.querySelector('.close-Tab')
-console.log(icone);
+
 
 // J'ajoute un écouteur d'événements pour les clics sur le conteneur de la modale
 modal.addEventListener('click', function (event) {
     // Je vérifie si le clic a été fait directement sur le conteneur ou sur l'icône de fermeture
     if (event.target.className.includes("modalContainer") || event.target.className.includes("close-Tab")) {
-        console.log('modal ou icone cliqué');
+
         // Je rends invisible la DIV modal-container
         modal.style.display = 'none';
     } else if (event.target.id.includes("btn-Add")) {
-        console.log('modal ou icone cliqué');
+
         modalImage.style.display = 'block';
     }
 });
@@ -218,7 +192,7 @@ const modalImage = document.querySelector('.filterModal');
 modalImage.addEventListener('click', function (close) {
     // Je vérifie si le clic a été fait directement sur le conteneur ou sur l'icône de fermeture
     if (close.target.className.includes("returnTab") || close.target.className.includes("close-Tab1 ") || close.target.className.includes("filterModal")) {
-        console.log('modal ou icone cliqué');
+
         // Je rends invisible la DIV modal-container
         modalImage.style.display = 'none';
 
@@ -238,14 +212,12 @@ const btnAccept = document.getElementById('btnSub')
 //Je détecte la validation du formulaire 
 btnAccept.addEventListener('click', function (e) {
     e.preventDefault();
-
+    e.stopPropagation();
     //Je récupère les valeurs de chacun des inputs 
     const photoUpload = photoUploadElem.files;
-    console.log(photoUpload.length, "photo");
     const title = titleElem.value.trim();
-    console.log(title, "titre");
     const category = categoryElem.value.trim();
-    console.log(category, "categorie")
+
     //Amélioration de l'ue
     //Tous les messages d'erreurs sont invisibles
     msgError.forEach(error => {
@@ -253,10 +225,10 @@ btnAccept.addEventListener('click', function (e) {
     })
     //Je vérifie les informations de l'utilisateur
     if (photoUpload.length == 0 || (photoUpload[0].type && !photoUpload[0].type.startsWith('image/'))) {
-        console.log('erreur photoUpload');
+
         photoUploadElem.nextElementSibling.classList.remove('invisible');
     } else if (title.length < 3 || title.length > 15) {
-        console.log('erreur titre');
+
         titleElem.nextElementSibling.classList.remove('invisible');
     } /*else {
     console.log('succès');
@@ -281,10 +253,25 @@ btnAccept.addEventListener('click', function (e) {
         .then(data => console.log(data)) // Affichez la réponse dans la console
         .catch(error => console.error('Error:', error)); // Gérez les erreurs
 });
+function checkFormCompletion() {
+    const photoUpload = photoUploadElem.files;
+    const title = titleElem.value.trim();
+    const category = categoryElem.value.trim();
+  
+    if (photoUpload.length > 0 && title.length >= 3 && title.length <= 15 && category.length > 0) {
+      btnAccept.style.backgroundColor = '#1D6154'; // Changer la couleur du bouton
+    } else {
+      btnAccept.style.backgroundColor = ''; // Réinitialiser la couleur du bouton
+    }
+  }
+  
+  // Ajouter des écouteurs d'événements sur les champs du formulaire
+  photoUploadElem.addEventListener('input', checkFormCompletion);
+  titleElem.addEventListener('input', checkFormCompletion);
+  categoryElem.addEventListener('input', checkFormCompletion);
 
 
-
-//Upload de la photo 
+//Upload de la photo //
 // Écouteur d'événements pour le changement de fichier dans le téléchargement de la photo
 // Sélectionner l'élément d'upload de la photo
 const photoUp = document.getElementById('photoUpload');
