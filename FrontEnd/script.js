@@ -154,9 +154,10 @@ project.addEventListener('click', function () {
                     'Authorization': `Bearer ${sessionStorage.getItem('authToken')}`
                 }
             })
-                .then(response => response.json())
-                .then(data => {
-                    deletedElement.remove();
+                .then(response => {
+                    if(response.status === 204){
+                        deletedElement.remove();                     
+                    }
                 })
                 .catch(error => console.error('Error:', error));
         });//Femerture listener
@@ -250,7 +251,22 @@ btnAccept.addEventListener('click', function (e) {
         body: formData
     })
         .then(response => response.json()) // Si vous vous attendez à une réponse JSON
-        .then(data => console.log(data)) // Affichez la réponse dans la console
+        .then(data => {
+            // Récupérez l'URL de l'image à partir de la réponse
+            const imageUrl = data.imageUrl;
+        
+            // Créez une template string pour afficher l'image
+            const imageHtml = `
+            <figure>
+            <img src="${image.imageUrl}">
+            <figcaption>${item.title}</figcaption>
+            </figure>
+            `;
+        
+            // Ajoutez l'image à un élément existant dans le DOM
+            const galleryContainer = document.querySelector('.gallery');
+            galleryContainer.innerHTML = imageHtml;
+          })
         .catch(error => console.error('Error:', error)); // Gérez les erreurs
 });
 function checkFormCompletion() {
