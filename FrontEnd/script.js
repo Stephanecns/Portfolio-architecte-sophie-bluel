@@ -1,4 +1,5 @@
-window.addEventListener('DOMContentLoaded', (event) => {
+// Événement DOMContentLoaded pour s'assurer que le contenu de la page est chargé avant d'exécuter le code
+window.addEventListener('DOMContentLoaded', () => {
     // Récupère le token du sessionStorage
     const token = sessionStorage.getItem('authToken');
 
@@ -11,30 +12,30 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 });
 
-
-
+// Variable pour stocker les données de la galerie
 let arrayGallery = []
+// Récupération des données de l'API au chargement de la page
 fetch('http://localhost:5678/api/works')
     .then(response => response.json())
     .then(data => {
-        // Nommage du tableau
+        // Stockage des données dans le tableau arrayGallery
         arrayGallery = data;
-        //Appel de la fonction
+        // Appel de la fonction displayWork() pour afficher la galeri
         displayWork()
     });
 
-
-
+// Fonction pour afficher les travaux dans la galerie
 function displayWork(categoryId) {
+    // Filtrage des travaux en fonction de la catégorie sélectionnée (si categoryId est défini)
     const filterarrayGallery = categoryId === undefined ? arrayGallery : arrayGallery.filter(gallery => gallery.categoryId === categoryId);
 
-
+    // Parcours des travaux filtrés et affichage dans la galerie
     filterarrayGallery.forEach(item => {
 
-        //Je sélectionne et je stocke la DIV gallery
+        // Sélection de la DIV gallery
         const galleryContainer = document.querySelector('.gallery');
 
-        //Création d'une DIV avec Template Strings
+        /// Création d'une structure HTML avec les données des travaux
         const article = `
         <figure>
         <img src="${item.imageUrl}">
@@ -42,56 +43,54 @@ function displayWork(categoryId) {
         </figure>
         `
 
-        // Ajout de article dans la DIV dédiée 
+        // Ajout de l'article dans la DIV dédiée
         galleryContainer.innerHTML += article;
     }
     )
 };
 
-///
-
-//Cette ligne utilise la méthode fetch() pour effectuer une requête HTTP à l'API située à 
+// Récupération des catégories depuis l'API 
 fetch('http://localhost:5678/api/categories')
     //lorsque la requête HTTP est terminée), la réponse doit être convertie en JSON.
     .then(response => response.json())
     .then(data => {
 
 
-        // Nommage du tableau
+        // Stockage des catégories dans un tableau
         const arrayCategories = data;
 
 
-        //Parcours ton tableau de catégories en utilisant une boucle forEach pour itérer sur chaque objet de ton tableau 
-        // L'élément actuel est accessible via le paramètre item.
+        // Parcours du tableau de catégories
         arrayCategories.forEach(item => {
-
-
-            //Je sélectionne et je stocke la DIV gallery
+            // Sélection de la DIV categories
             const categoriesContainer = document.querySelector('.categories');
 
-
+            // Création d'un élément article pour chaque catégorie
             const article = document.createElement('article');
             article.className = "btn-all"
             article.innerHTML = item.name
 
+            // Ajout d'un écouteur d'événements pour filtrer les travaux par catégorie
             article.addEventListener('click', function () {
                 const gallery = document.getElementById('gallery');
                 gallery.innerHTML = "";
                 displayWork(item.id)
             })
 
+            // Création d'un élément option pour le menu déroulant des catégories
             const option = document.createElement('option');
             option.innerHTML = item.name;
             option.value = item.id;
 
+            // Ajout de l'option dans le menu déroulant
             document.getElementById('ctgy').appendChild(option);
-            // Ajout de article dans la DIV dédiée 
+            // Ajout de l'article dans la DIV categories
             categoriesContainer.appendChild(article);
 
         })
 
 
-        //Affiche tout dans le bouton tout 
+        // Événement click sur le bouton "Tout afficher" 
         const displayAllButton = document.getElementById('filterAll-button');
         function displayAll() {
             const galleryContainer = document.querySelector('.gallery');
@@ -116,24 +115,23 @@ fetch('http://localhost:5678/api/categories')
 
     })
 
-
-//Création modal 
+// Création de la modale
 const project = document.querySelector('.edit3');
 project.addEventListener('click', function () {
     //Je sélectionne et je stocke la DIV modal-container
     const modal = document.querySelector('.modalContainer');
 
-    //Je rends visible la DIV modal-container
+    // Affichage de la modale
     modal.style.display = "block";
     modal.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
 
-    //Je sélectionne et je stocke la DIV gallery
+    // Sélection de la DIV photo-gallery
     const galleryContainer = document.querySelector('.photo-gallery');
 
-    //Je réinitialise le contenu de la galerie
+    // Réinitialisation du contenu de la galerie
     galleryContainer.innerHTML = '';
 
-    //Je génère le nouveau contenu de la galerie
+    // Génération du contenu de la galerie dans la modale
     arrayGallery.forEach(item => {
 
         const modalHtml = document.createElement('div');
@@ -143,11 +141,13 @@ project.addEventListener('click', function () {
         trashI.classList.add('blackIcon1', 'fa-solid', 'fa-trash-can');
         modalHtml.appendChild(trashI);
 
-
         galleryContainer.appendChild(modalHtml);
+
+        // Événement click sur l'icône de suppression
         trashI.addEventListener('click', function (event) {
             const workId = item.id;
             const deletedElement = event.target.parentNode;
+            // Requête pour supprimer le travail de la base de données
             fetch(`http://localhost:5678/api/works/${workId}`, {
                 method: 'DELETE',
                 headers: {
@@ -155,8 +155,9 @@ project.addEventListener('click', function () {
                 }
             })
                 .then(response => {
-                    if(response.status === 204){
-                        deletedElement.remove();                     
+                    // Vérification de la réponse HTTP pour la confirmation de suppression
+                    if (response.status === 204) {
+                        deletedElement.remove();
                     }
                 })
                 .catch(error => console.error('Error:', error));
@@ -164,19 +165,19 @@ project.addEventListener('click', function () {
     });
 })
 
-// Je sélectionne et je stocke la DIV modal-container
+// Sélection de la DIV modal-container
 const modal = document.querySelector('.modalContainer');
 
-// Je sélectionne l'icone
+// Sélection de l'icône de fermeture
 const icone = document.querySelector('.close-Tab')
 
 
-// J'ajoute un écouteur d'événements pour les clics sur le conteneur de la modale
+// Événement click sur le conteneur de la modale
 modal.addEventListener('click', function (event) {
     // Je vérifie si le clic a été fait directement sur le conteneur ou sur l'icône de fermeture
     if (event.target.className.includes("modalContainer") || event.target.className.includes("close-Tab")) {
 
-        // Je rends invisible la DIV modal-container
+        // Fermeture de la modale
         modal.style.display = 'none';
     } else if (event.target.id.includes("btn-Add")) {
 
@@ -186,12 +187,12 @@ modal.addEventListener('click', function (event) {
 
 
 
-//Je sélectionne et je stocke le bouton 
+// Sélection du bouton d'ajout
 const btnAdd = document.getElementById('btn-Add');
 const modalImage = document.querySelector('.filterModal');
-
+// Événement click pour fermer la modale d'ajout
 modalImage.addEventListener('click', function (close) {
-    // Je vérifie si le clic a été fait directement sur le conteneur ou sur l'icône de fermeture
+    // Vérification du clic sur le conteneur ou sur l'icône de fermeture
     if (close.target.className.includes("returnTab") || close.target.className.includes("close-Tab1 ") || close.target.className.includes("filterModal")) {
 
         // Je rends invisible la DIV modal-container
@@ -202,7 +203,7 @@ modalImage.addEventListener('click', function (close) {
 
 
 //Deuxième formulaire 
-// 1 - Je sélectionne et stocke tous les éléments nécessaires
+// Sélection des éléments du formulaire
 const form = document.getElementById('formulaireAddWork');
 const photoUploadElem = document.getElementById('photoUpload');
 const titleElem = document.getElementById('title');
@@ -210,21 +211,20 @@ const categoryElem = document.getElementById('ctgy');
 const msgError = document.querySelectorAll('.error');
 const btnAccept = document.getElementById('btnSub')
 
-//Je détecte la validation du formulaire 
+// Événement click sur le bouton de soumission du formulaire
 btnAccept.addEventListener('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
-    //Je récupère les valeurs de chacun des inputs 
+    // Récupération des valeurs des champs du formulaire 
     const photoUpload = photoUploadElem.files;
     const title = titleElem.value.trim();
     const category = categoryElem.value.trim();
 
-    //Amélioration de l'ue
-    //Tous les messages d'erreurs sont invisibles
+    // Masquage des messages d'erreur
     msgError.forEach(error => {
         error.classList.add('invisible');
     })
-    //Je vérifie les informations de l'utilisateur
+    // Vérification des informations saisies par l'utilisateur
     if (photoUpload.length == 0 || (photoUpload[0].type && !photoUpload[0].type.startsWith('image/'))) {
 
         photoUploadElem.nextElementSibling.classList.remove('invisible');
@@ -236,7 +236,7 @@ btnAccept.addEventListener('click', function (e) {
     titre.innerText = "Votre formulaire est correctement envoyé !";
 };
 */
-    //Création de l'objet FormData
+    // Création de l'objet FormData pour envoyer les données du formulaire
     var formData = new FormData(form);
     formData.append("image", photoUpload[0]);
     formData.append("title", title);
@@ -252,44 +252,43 @@ btnAccept.addEventListener('click', function (e) {
     })
         .then(response => response.json()) // Si vous vous attendez à une réponse JSON
         .then(data => {
-            // Récupérez l'URL de l'image à partir de la réponse
+            // Récupération de l'URL de l'image depuis la réponse
             const imageUrl = data.imageUrl;
-        
-            // Créez une template string pour afficher l'image
+
+            // Création d'une structure HTML pour afficher l'image
             const imageHtml = `
             <figure>
             <img src="${image.imageUrl}">
             <figcaption>${item.title}</figcaption>
             </figure>
             `;
-        
-            // Ajoutez l'image à un élément existant dans le DOM
+
+            // Ajout de l'image à la galerie existante dans le DOM
             const galleryContainer = document.querySelector('.gallery');
             galleryContainer.innerHTML = imageHtml;
-          })
+        })
         .catch(error => console.error('Error:', error)); // Gérez les erreurs
 });
+
+// Vérification de la complétion du formulaire
 function checkFormCompletion() {
     const photoUpload = photoUploadElem.files;
     const title = titleElem.value.trim();
     const category = categoryElem.value.trim();
-  
+
     if (photoUpload.length > 0 && title.length >= 3 && title.length <= 15 && category.length > 0) {
-      btnAccept.style.backgroundColor = '#1D6154'; // Changer la couleur du bouton
+        btnAccept.style.backgroundColor = '#1D6154'; // Changer la couleur du bouton
     } else {
-      btnAccept.style.backgroundColor = ''; // Réinitialiser la couleur du bouton
+        btnAccept.style.backgroundColor = ''; // Réinitialiser la couleur du bouton
     }
-  }
-  
-  // Ajouter des écouteurs d'événements sur les champs du formulaire
-  photoUploadElem.addEventListener('input', checkFormCompletion);
-  titleElem.addEventListener('input', checkFormCompletion);
-  categoryElem.addEventListener('input', checkFormCompletion);
+}
 
+// Ajout d'écouteurs d'événements pour les champs du formulaire
+photoUploadElem.addEventListener('input', checkFormCompletion);
+titleElem.addEventListener('input', checkFormCompletion);
+categoryElem.addEventListener('input', checkFormCompletion);
 
-//Upload de la photo //
-// Écouteur d'événements pour le changement de fichier dans le téléchargement de la photo
-// Sélectionner l'élément d'upload de la photo
+// Gestion du téléchargement de la photo
 const photoUp = document.getElementById('photoUpload');
 
 // Écouteur d'événements pour le changement de fichier dans le téléchargement de la photo
