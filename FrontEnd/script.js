@@ -212,7 +212,7 @@ const msgError = document.querySelectorAll('.error');
 const btnAccept = document.getElementById('btnSub')
 
 // Événement click sur le bouton de soumission du formulaire
-btnAccept.addEventListener('click', function (e) {
+form.addEventListener('submit', function (e) {
     e.preventDefault();
     e.stopPropagation();
     // Récupération des valeurs des champs du formulaire 
@@ -226,12 +226,14 @@ btnAccept.addEventListener('click', function (e) {
     })
     // Vérification des informations saisies par l'utilisateur
     if (photoUpload.length == 0 || (photoUpload[0].type && !photoUpload[0].type.startsWith('image/'))) {
-
+        e.preventDefault();
         photoUploadElem.nextElementSibling.classList.remove('invisible');
+        return; // quitte la fonction après avoir empêché la soumission du formulaire
     } else if (title.length < 3 || title.length > 15) {
-
+        e.preventDefault();
         titleElem.nextElementSibling.classList.remove('invisible');
-    } /*else {
+        return; // quitte la fonction après avoir empêché la soumission du formulaire
+    }/*else {
     console.log('succès');
     titre.innerText = "Votre formulaire est correctement envoyé !";
 };
